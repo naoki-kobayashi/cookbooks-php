@@ -87,14 +87,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # some recipes and/or roles.
   #
     config.vm.provision "chef_solo" do |chef|
-      chef.cookbooks_path = "chef-repo/site-cookbooks"
-      chef.roles_path = "chef-repo/roles"
-      chef.data_bags_path = "chef-repo/data_bags"
+      chef.cookbooks_path = "./site-cookbooks"
+      chef.roles_path = "./roles"
+      chef.data_bags_path = "./data_bags"
   #   chef.run_list = ["httpd"]
       chef.add_recipe "localdef"
       chef.add_recipe "httpd"
       chef.add_recipe "mysql"
       chef.add_recipe "php"
+      chef.add_recipe "vim"
+      chef.add_recipe "git"
   #   chef.add_role "web"
   #
   #   # You may also specify custom JSON attributes:
@@ -123,7 +125,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
-# config.omnibus.chef_version = "＜インストールするChefのバージョン番号＞"
-config.omnibus.chef_version = "11.8.2"
-# 「config.omnibus.chef_version = :latest」とすると最新バージョンになる。
+  # config.omnibus.chef_version = "＜インストールするChefのバージョン番号＞"
+  config.omnibus.chef_version = "11.8.2"
+  # 「config.omnibus.chef_version = :latest」とすると最新バージョンになる。
 end
